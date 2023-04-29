@@ -1,0 +1,42 @@
+﻿@using Padrao.Models;
+<ul class="navbar-nav">
+
+    <!-- SE O USUARIO NÃO ESTIVER LOGADO -->
+    @{
+        if (Publica.Logado)
+        {
+
+            <li class="nav-item">
+                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="" asp-action="">
+                    <span class="glyphicon glyphicon-user"></span>
+                    @Publica.Login_Usuario
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="home" asp-action="_Sair">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    Sair
+                </a>
+            </li>
+
+        }
+        else
+        {
+
+            <li class="nav-item">
+                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="" asp-action="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Registrar
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="home" asp-action="_Login">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Logar
+                </a>
+            </li>
+
+        }
+    }
+
+</ul>

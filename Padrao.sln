@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padrao", "Padrao\Padrao.csproj", "{EEEC471D-5D51-49BC-8D38-AB9F3B763620}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEEC471D-5D51-49BC-8D38-AB9F3B763620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEC471D-5D51-49BC-8D38-AB9F3B763620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEEC471D-5D51-49BC-8D38-AB9F3B763620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEEC471D-5D51-49BC-8D38-AB9F3B763620}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E76F59D-8D52-4B6C-AB08-E09CB134A8C1}
+	EndGlobalSection
+EndGlobal
