@@ -11,11 +11,11 @@ namespace Padrao
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("fukuta2003@hotmail.com", "fpc250272#")
+                Credentials = new NetworkCredential("seuemail@hotmail.com", "suasenha")
             };
 
             return client.SendMailAsync(
-                new MailMessage(from: "fukuta2003@hotmail.com",
+                new MailMessage(from: "seuemail@hotmail.com",
                                 to: email,
                                 subject,
                                 message
