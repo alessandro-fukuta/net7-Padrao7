@@ -1,0 +1,53 @@
+﻿@model Usuario;
+<div class="container">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h4>Recuperar Acesso</h4>
+                <div class="d-flex justify-content-end social_icon">
+                    <!--
+                    <span><i class="glyphicon glyphicon-play"></i></span>
+                    <span><i class="glyphicon glyphicon-plus"></i></span>
+                    <span><i class="glyphicon glyphicon-minus"></i></span>-->
+                </div>
+            </div>
+            <div class="card-body large">
+                <div class="card-text text-white">
+                    Entre com os dados para recuperar
+                </div>
+                <form action="RecuperarAcesso" method="post">
+                    <div class="row">
+                        <div class="col col-lg-6">
+                            <input type="text" class="form-group" name="pUsuario" value="@ViewBag.pUsuario" placeholder="usuário" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="card-text text-warning">
+                            ou
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col col-sm-10">
+                            <input type="email" class="form-group bg-warning" name="pEmail" value="@ViewBag.pEmail" placeholder="email" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col col-lg-2">
+                            <input type="submit" class="form-group bg-primary text-white" value="Recuperar" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div> <!--card-->
+    </div>
+</div>

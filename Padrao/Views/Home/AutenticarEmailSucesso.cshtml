@@ -1,0 +1,23 @@
+﻿@{
+
+}
+<br />
+<br />
+<br />
+<div class="d-flex justify-content-center h-100">
+
+    <div class="card">
+        <h5 class="card-header bg-warning">Parabéns, @Publica.Login_NomeCompleto</h5>
+        <div class="card-body">
+            <h5 class="card-title text-white">Seu acesso foi autenticado com sucesso !</h5>
+            <p class="card-text text-white">
+                Vá para a tela de LOGIN e tenha acesso a todos os recursos do sistema
+            </p>
+            <form asp-action="_Login" method="post">
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary login_btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

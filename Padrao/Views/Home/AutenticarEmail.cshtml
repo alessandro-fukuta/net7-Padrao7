@@ -1,0 +1,49 @@
+﻿@model Padrao.Models.Usuario
+@{
+
+}
+<br />
+<br />
+<br />
+<div class="d-flex justify-content-center h-100">
+
+    <div class="card">
+        <h5 class="card-header bg-warning"><i class="glyphicon glyphicon-user"></i> @Publica.Login_NomeCompleto</h5>
+        <div class="card-body col-lg-12">
+            <h5 class="card-title text-white">Abra a mensagem recebida em seu e-mail</h5>
+            <p class="card-text text-white">
+                Digite o código de autenticação abaixo:
+            </p>
+            <form asp-action="AutenticarEmail" method="post">
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="glyphicon glyphicon-envelope"></i></span>
+                    </div>
+                    <div class="row">
+                        <div class="col col-lg-12">
+                            <input type="email" class="form-control" name="pEmail" autofocus asp-for="Autenticacao" placeholder="Email">
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="glyphicon glyphicon-star"></i></span>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <input type="text" class="form-control" name="pCodigoAutenticacao" asp-for="Autenticacao" placeholder="Código">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Verificar" class="btn btn-primary login_btn">
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>

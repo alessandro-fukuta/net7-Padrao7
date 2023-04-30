@@ -7,19 +7,25 @@ namespace Padrao
     {
         public Task SendEmailAsync(string email, string subject, string message)
         {
+
+
             var client = new SmtpClient("smtp.office365.com", 587)
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("seuemail@hotmail.com", "suasenha")
+                Credentials = new NetworkCredential("fukuta2003@hotmail.com", "fpc250272#"),
+                
             };
 
-            return client.SendMailAsync(
-                new MailMessage(from: "seuemail@hotmail.com",
+            var msg = new MailMessage(from: "fukuta2003@hotmail.com",
                                 to: email,
                                 subject,
                                 message
-                                ));
+                                );
+
+            msg.IsBodyHtml = true;
+
+            return client.SendMailAsync(msg);
         }
     }
 }

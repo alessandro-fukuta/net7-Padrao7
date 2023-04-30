@@ -1,5 +1,5 @@
 ﻿@{
-    
+
 }
 <br />
 <br />
@@ -17,7 +17,11 @@
             <p class="card-text text-white">
                 Em aproximadamente 5 minutos, caso não encontre o email na caixa de entrada verifique a caixa de SPAM ou LIXO ELETRÔNICO
             </p>
-            <a href="#"  class="btn btn-primary">Fazer Login</a>
+            <form asp-action="IrAutenticar" method="post">
+                <div class="form-group">
+                    <input type="submit" value="Proximo" class="btn btn-primary login_btn">
+                </div>
+            </form>
         </div>
     </div>
 </div>

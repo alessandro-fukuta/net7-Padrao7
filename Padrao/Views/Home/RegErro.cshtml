@@ -1,0 +1,43 @@
+﻿@model Padrao.Models.Usuario
+@{
+
+}
+<br />
+<br />
+<br />
+<div class="d-flex justify-content-center h-100">
+
+    <div class="card">
+        <h5 class="card-header bg-warning"><i class="glyphicon glyphicon-user"></i> @Publica.Login_NomeCompleto</h5>
+        <div class="card-body">
+            <h5 class="card-title text-white">Erro de Registro</h5>
+            <p class="card-text text-white">
+                Pode ser que algum dos casos abaixo, tenha ocorrido
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item bg-dark text-white"><i class="glyphicon glyphicon-remove"></i> Usuário já registrado</li>
+                <li class="list-group-item bg-dark text-white"><i class="glyphicon glyphicon-remove"></i> E-Mail já registrado</li>
+                <li class="list-group-item bg-dark text-white"><i class="glyphicon glyphicon-remove"></i> Telefone já registrado</li>
+            </ul>
+            <br />
+
+            <form asp-action="RegErro" method="post">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col col-sm-2">
+                            <input type="submit" value="Retornar" class="btn btn-primary login_btn">
+                        </div>
+                        <div class="col col-sm-1">
+                            <span ></span>
+                        </div>
+                        <div class="col col-sm-2">
+                            <a asp-action="RecuperarAcesso" asp-controller="Home" class="btn btn-danger">Recuperar Acesso</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>

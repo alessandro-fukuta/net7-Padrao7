@@ -45,6 +45,8 @@ namespace Padrao.Models
         public bool Administrador { get; set; }
         public string? Chave { get; set; } // ligado a algum cadastro / empresa
 
+        public int Autenticacao { get; set; } // codigo a ser enviado no email e validado
+        public bool EmailValidado { get; set; } // se sim o login pode ser feito, senão solicite o código enviado no email ou reenviar.
 
     }
 }
