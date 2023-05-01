@@ -238,16 +238,64 @@ namespace Padrao.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AlterarSenha([Bind("NomeUsuario,Email")] Usuario usuarios, string pUsuario, string pSenhaAtual, string pNovaSenha, string pReNovaSenha)
+        public async Task<IActionResult> AlterarSenha([Bind("NomeUsuario,Email")] Usuario usuarios, string pUsuario, string pSenhaAtual, string pNovaSenha, string pReNovaSenha, string pAlertaEmail)
         {
-            if(pNovaSenha != pReNovaSenha) {
-                Publica.Mensagem1 = "Senhas não conferem";
-                return View();
+            if (pNovaSenha.Length < 8)
+            {
+                Publica.Mensagem1 = "Mínimo do 8 Caracteres \n Inclua Maiusculas, Minusculas, Letras, Numeros e Sinais";
+                return Redirect("MensagemPublica");
+
             }
-            return View();
+
+            if (pNovaSenha != pReNovaSenha)
+            {
+                Publica.Mensagem1 = "Senhas não conferem";
+                return Redirect("MensagemPublica");
+            }
+
+            var users = await _context.Usuarios.FirstOrDefaultAsync(m => m.NomeUsuario == pUsuario && m.Senha == pSenhaAtual);
+            if (users == null)
+            {
+                Publica.Mensagem1 = "Senha Atual não confere !";
+                return Redirect("MensagemPublica");
+            }
+
+            users.Senha = pNovaSenha;
+            _context.Update(users);
+            await _context.SaveChangesAsync();
+
+            // enviar email
+
+            var Mensagem =
+                "<html>" +
+                "<head>" +
+                "</head>" +
+                "<body>" +
+
+                      "<h3>Olá, " + users.NomeCompleto + "</h3>"+
+                       "<br/>" +
+                       "<br/>" +
+                       "<h3>ALERTA DE ALTERAÇÃO DE SENHA.</h3>" +
+                       "<br/>" +
+                       "<h3>Abaixo segue os dados de acesso ao sistema:</h4>" +
+                       "<h3 style='color:blue;'>Usuário:" + pUsuario + "</h4>" +
+                       "<h3 style='color:blue;'>Email..:" + users.Email + "</h4>" +
+                       "<h3 style='color:blue;'>Senha..:" + pNovaSenha + "</h4>" +
+                       "<hr/>" +
+                    "</body>" +
+                    "</html>";
+                await emailSender.SendEmailAsync(users.Email, "ALTERAÇÃO DE SENHA", Mensagem);
+
+            Publica.Mensagem1 = "Senha ALTERADA com Sucesso";
+            return Redirect("MensagemPublica");
+
         }
 
-
+        [HttpGet]
+        public IActionResult MensagemPublica()
+        {
+            return View();
+        }
 
 
         [HttpPost]

@@ -1,5 +1,5 @@
 ﻿@model Padrao.Models.Usuario;
-<link rel="stylesheet" href="~/css/registrar.css" />
+
 <br />
 <br />
 
@@ -33,7 +33,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="glyphicon glyphicon-asterisk"></i></span>
                                 </div>
-                                <input type="password" asp-for="Senha" name="pSenha" class="form-control" placeholder="Senha Atual">
+                                <input type="password" asp-for="Senha" name="pSenhaAtual" class="form-control" placeholder="Senha Atual">
                                 <div class="text-warning">
                                     <span asp-validation-for="Senha" class="text-danger"></span>
                                 </div>
@@ -55,22 +55,24 @@
                         </div>
                     </div>
                     <br />
-                    <div class="col-md-6">
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="glyphicon glyphicon-asterisk"></i></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="glyphicon glyphicon-asterisk"></i></span>
+                                </div>
+                                <input type="password" asp-for="ConfirmeSenha" name="pReNovaSenha" class="form-control" placeholder="Nova-Senha"><br />
+                                <span asp-validation-for="ConfirmeSenha" class="text-danger"></span>
                             </div>
-                            <input type="password" asp-for="ConfirmeSenha" name="pReNovaSenha" class="form-control" placeholder="Nova-Senha"><br />
-                            <span asp-validation-for="ConfirmeSenha" class="text-danger"></span>
                         </div>
                     </div>
-            <br />
-            <div class="form-group">
+                    <br />
+                    <div class="form-group">
                         <input type="submit" value="ALTERAR SENHA" class="btn btn-outline-success">
+                    </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
 
 </div>
