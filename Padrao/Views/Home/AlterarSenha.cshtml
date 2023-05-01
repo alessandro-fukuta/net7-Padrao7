@@ -1,0 +1,76 @@
+﻿@model Padrao.Models.Usuario;
+<link rel="stylesheet" href="~/css/registrar.css" />
+<br />
+<br />
+
+<div class="container">
+
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Alteração de Senha</h3>
+            </div>
+
+            <div class="card-body">
+                <form asp-action="AlterarSenha">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="glyphicon glyphicon-user"></i></span>
+                                </div>
+                                <input type="text" asp-for="NomeUsuario" name="pUsuario" class="form-control" autofocus placeholder="usuario">
+                                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="glyphicon glyphicon-asterisk"></i></span>
+                                </div>
+                                <input type="password" asp-for="Senha" name="pSenha" class="form-control" placeholder="Senha Atual">
+                                <div class="text-warning">
+                                    <span asp-validation-for="Senha" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="glyphicon glyphicon-asterisk"></i></span>
+                                </div>
+                                <input type="password" asp-for="Senha" name="pNovaSenha" class="form-control" placeholder="Nova Senha">
+                                <div class="text-warning">
+                                    <span asp-validation-for="Senha" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-6">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="glyphicon glyphicon-asterisk"></i></span>
+                            </div>
+                            <input type="password" asp-for="ConfirmeSenha" name="pReNovaSenha" class="form-control" placeholder="Nova-Senha"><br />
+                            <span asp-validation-for="ConfirmeSenha" class="text-danger"></span>
+                        </div>
+                    </div>
+            <br />
+            <div class="form-group">
+                        <input type="submit" value="ALTERAR SENHA" class="btn btn-outline-success">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>

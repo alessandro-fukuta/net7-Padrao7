@@ -26,7 +26,7 @@ namespace Padrao.Controllers
         }
         public IActionResult Index()
         {
-            string Mensagem = "";
+            string? Mensagem = Publica.Mensagem1;
 
             var cookie = Request.Cookies["asplogin"];
             if (cookie != null)
@@ -50,6 +50,7 @@ namespace Padrao.Controllers
 
         public IActionResult _Login()
         {
+            ViewBag.Mensagem = "Fazer Login";
             return View();
         }
 
@@ -60,24 +61,28 @@ namespace Padrao.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Logar([Bind("NomeUsuario")] Usuario users, string pNomeUsuario)
+        [HttpGet]
+        public IActionResult Logar()
         {
-            /*
-			var us = await _context.Usuarios
-				.FirstOrDefaultAsync(m => m.NomeUsuario == pNomeUsuario);
-			if (us == null)
-			{
-				return NotFound();
-			}
-            */
+            return Redirect("Index");
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Logar([Bind("NomeUsuario")] Usuario users, string pUsuario, string pSenha)
+        {
+            var us = await _context.Usuarios
+                  .FirstOrDefaultAsync(m => m.NomeUsuario == pUsuario && m.Senha == pSenha);
 
+            if (us == null)
+            {
+                Publica.Mensagem1 = "Usuário ou Senha inválido.";
+                return Redirect("Logar");
+            }
+
+            Publica.Mensagem1 = "";
             // salvar cookie de login se deu certo
-            string x = users.NomeUsuario;
-
-            SalvarCookie("asplogin", users.NomeUsuario);
-
+            string? x = us.NomeUsuario;
+            SalvarCookie("asplogin", x);
 
             return Redirect("index");
         }
@@ -141,11 +146,16 @@ namespace Padrao.Controllers
                       "<head>" +
                       "</head>" +
                       "<body>" +
+                         "<h4>Olá, " + Publica.Login_NomeCompleto + " </h4>" +
+                         "<hr/>" +
                          "<h4>Você se registrou em nosso site, segue o link para você confirmar o seu e - mail</h4>" +
                          "<h4>ESSE EMAIL É PARTICULAR, O CÓDIGO ABAIXO É SUA SEGURANÇA</h4>" +
                          "<h4>SEU CÓDIGO DE AUTENTICAÇÃO É:</h4> <h3 style='color: blue;'> " + Id_Autenticacao.ToString() + " </h3>" +
-                      "</body>" +
-                      "</html>";
+                         "<hr/" +
+                         "<h4>Acesse o link abaixo</4>" +
+                         "<a href='https://localhost:7253/Home/AutenticarEmail'>Autenticar E-mail</a>" +
+                         "</body>" +
+                         "</html>";
                 await emailSender.SendEmailAsync(usuarios.Email, "REGISTRO DE CONTA", Mensagem);
                 return Redirect("RegSucesso");
             }
@@ -220,13 +230,34 @@ namespace Padrao.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult AlterarSenha()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AlterarSenha([Bind("NomeUsuario,Email")] Usuario usuarios, string pUsuario, string pSenhaAtual, string pNovaSenha, string pReNovaSenha)
+        {
+            if(pNovaSenha != pReNovaSenha) {
+                Publica.Mensagem1 = "Senhas não conferem";
+                return View();
+            }
+            return View();
+        }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> RecuperarAcesso([Bind("NomeUsuario,Email")] Usuario usuarios, string pUsuario, string pEmail)
         {
             bool Achou = false;
             string Mensagem = "";
-            string Email = "";
-            string vUsuario = "";
+            string? Email = "";
+            string? vUsuario = "";
+            string? vSenha = "";
             Funcoes fun = new Funcoes();
             int Id_Autenticacao = fun.GeraID();
 
@@ -240,7 +271,7 @@ namespace Padrao.Controllers
                     Achou = true;
                     vUsuario = pUsuario;
                     Email = users.Email;
-
+                    vSenha = users.Senha;
                     users.Autenticacao = Id_Autenticacao;
                     users.EmailValidado = false;
 
@@ -256,6 +287,7 @@ namespace Padrao.Controllers
                     Achou = true;
                     Email = users.Email;
                     vUsuario = users.NomeUsuario;
+                    vSenha = users.Senha;
 
                     users.Autenticacao = Id_Autenticacao;
                     users.EmailValidado = false;
@@ -278,8 +310,10 @@ namespace Padrao.Controllers
                        "<h4>Abaixo segue os dados de acesso ao sistema:</h4>" +
                        "<h4 style='color:blue;'>Usuário:" + vUsuario + "</h4>" +
                        "<h4 style='color:blue;'>Email..:" + Email + "</h4>" +
+                       "<h4 style='color:blue;'>Senha..:" + vSenha + "</h4>" +
                        "<h4>ESSE EMAIL É PARTICULAR, O CÓDIGO ABAIXO É SUA SEGURANÇA</h4>" +
                        "<h4>SEU CÓDIGO DE AUTENTICAÇÃO É:</h4> <h3 style='color: blue;'> " + Id_Autenticacao.ToString() + " </h3>" +
+                       "<hr/" +
                        "<h4>Acesse o link abaixo</4>" +
                        "<a href='https://localhost:7253/Home/AutenticarEmail'>Autenticar E-mail</a>" +
                     "</body>" +

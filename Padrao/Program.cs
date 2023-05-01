@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using MySql.EntityFrameworkCore.Extensions;
 using Padrao.Data;
 using Padrao.Models;
-using Padrao.Data;
+
 using Coravel;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Coravel.Mailer.Mail.Helpers;

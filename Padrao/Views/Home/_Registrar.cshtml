@@ -1,23 +1,14 @@
 ﻿@model Padrao.Models.Usuario;
 <link rel="stylesheet" href="~/css/registrar.css" />
-
-
+<br />
+<br />
 
 <div class="container">
-    <br />
-    <br />
-    <br />
-
+   
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
                 <h3>Registre-se</h3>
-                <div class="d-flex justify-content-end social_icon">
-                    <!--
-                    <span><i class="glyphicon glyphicon-play"></i></span>
-                    <span><i class="glyphicon glyphicon-plus"></i></span>
-                    <span><i class="glyphicon glyphicon-minus"></i></span>-->
-                </div>
             </div>
 
             <div class="card-body">
@@ -62,7 +53,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="glyphicon glyphicon-phone"></i></span>
                                 </div>
-                                <input type="text" asp-for="Celular" class="form-control" placeholder="Telefone">
+                                <input asp-for="Celular" id="idCelular" class="form-control">
                                 <span asp-validation-for="Celular" class="text-danger"></span>
                             </div>
                         </div>
@@ -99,6 +90,10 @@
         </div>
     </div>
 
-
-
 </div>
+<script>
+    $(document).ready(function () {
+        //  $('#idCPF').mask('000.000.000-00', { placeholder: "___.___.___-__" });
+        //  $('#idCNPJ').mask('00.000.000/0000-00', { placeholder: "__.___.___/____-__" });
+        $('#idCelular').mask('(99) 9999-9999', { placeholder: "(99) 9999-9999" });
+</script>

@@ -6,11 +6,17 @@
         if (Publica.Logado)
         {
 
-            <li class="nav-item">
-                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="" asp-action="">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-warning bg-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="glyphicon glyphicon-user"></span>
                     @Publica.Login_Usuario
                 </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#"> <span class="glyphicon glyphicon-user"></span> | Meus Dados</a></li>
+                    <li><a class="dropdown-item" href="#"> <span class="glyphicon glyphicon-cog"></span> | Configurações</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"> <span class="glyphicon glyphicon-info-sign"></span> | Sobre</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-warning bg-black" asp-area="" asp-controller="home" asp-action="_Sair">

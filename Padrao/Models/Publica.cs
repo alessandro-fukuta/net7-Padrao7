@@ -13,6 +13,8 @@
 		public static string? Sistema_Nome { get; set; }
 		public static string? Sistema_Versao { get; set; }
 
+		public static string? Mensagem1 { get; set; }
+		public static string? Mensagem2 { get; set; }
 
 
 	}
