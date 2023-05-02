@@ -21,7 +21,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="glyphicon glyphicon-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="pUsuario" asp-for="NomeUsuario" autofocus placeholder="usuário">
+                        <input type="text" class="form-control" name="pUsuario" value="@Publica.Login_Usuario" asp-for="NomeUsuario" autofocus placeholder="usuário">
                     </div>
                     <br />
 
@@ -42,19 +42,18 @@
 
 
                     <br />
-                    <div class="row align-items-center remember">
-                        <input type="checkbox">Lembre-me
-                    </div>
-                    <br />
-
+                  
                     <div class="form-group">
                         <input type="submit" value="Login" class="btn float-right login_btn">
                     </div>
                 </form>
             </div>
             <div class="card-footer">
+                <div class="text-white">
+                    Não tem uma conta ?
+                </div>
                 <div class="d-flex justify-content-center links">
-                    Não tem uma conta ?<a asp-action="_Registrar" asp-controller="Home" class="bg-primary text-white">Registre-se</a>
+                    <a asp-action="_Registrar" asp-controller="Home" class="btn btn-outline-primary text-white">Registre-se</a>
                 </div>
                 <br />
                 <div class="d-flex justify-content-center">

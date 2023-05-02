@@ -1,0 +1,127 @@
+﻿@model Padrao.Models.Usuario
+<link rel="stylesheet" href="~/css/cadastros.css" />
+
+@{
+    ViewData["Title"] = "Dados do Usuário";
+}
+<div class="card">
+    <div class="card-title">
+        <div class="row p-3 g-3">
+            <div class="col-md-6">
+                <h4 class="text-black">
+                    <i class="glyphicon glyphicon-user text-black"></i>
+                    Dados do Usuário
+                </h4>
+                <h6 class="text-dark">@Publica.Login_NomeCompleto</h6>
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+        </div>
+        <form asp-action="Edit" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="NomeCompleto">Nome Completo</label>
+                    <input class="form-control" asp-for="NomeCompleto" />
+                </div>
+                <div class="col-md-5">
+                    <label for="Email">Email</label>
+                    <input class="form-control" asp-for="Email" />
+                </div>
+                <div class="col-md-3">
+                    <label for="Usuario">Usuario</label>
+                    <input class="form-control" asp-for="NomeUsuario" />
+                </div>
+
+            </div>
+            <div class="row g-3">
+                <div class="col-md-2">
+                    <label asp-for="Celular">Tel Celular</label>
+                    <input asp-for="Celular" class="form-control" />
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+
+                </div>
+                <div class="col-md-2">
+                    <input asp-for="Senha" type="hidden" class="form-control" />
+                    <span asp-validation-for="Senha"  class="text-danger"></span>
+                    <input type="hidden" asp-for="ConfirmeSenha" />
+                </div>
+
+            </div>
+            <div class="row g-3">
+                <div class="col-md-2">
+                    <label for="CPF">CPF</label>
+                    <input asp-for="CPF" class="form-control" id="txtCPF" autofocus placeholder="Número do CPF" />
+                </div>
+                <div class="col-md-2">
+                    <label for="RG">RG</label>
+                    <input asp-for="RG" class="form-control" id="txtRG" placeholder="Nº do RG" />
+                </div>
+                <div class="col-md-2">
+                    <label for="CEP">CEP</label>
+                    <input asp-for="Endereco_Cep" class="form-control" id="txtCEP" placeholder="Cep (correios)" />
+                </div>
+                <div class="col-md-5">
+                    <label for="Endereco">Endereço</label>
+                    <input asp-for="Endereco_Rua" class="form-control" id="txtEndereco" placeholder="Endereço" />
+                </div>
+                <div class="col-md-1">
+                    <label for="Número">Numero</label>
+                    <input asp-for="Endereco_Numero" class="form-control" id="txtNUMERO" placeholder="No" />
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="Endereco_Bairro">Bairro</label>
+                    <input asp-for="Endereco_Bairro" class="form-control" id="txtBairro" placeholder="Bairro" />
+                </div>
+                <div class="col-md-5">
+                    <label for="Endereco_Cidade">Cidade</label>
+                    <input asp-for="Endereco_Cidade" class="form-control" id="txtCidade" placeholder="Cidade" />
+                </div>
+                <div class="col-md-1">
+                    <label for="Endereco_Estado">Estado</label>
+                    <input asp-for="Endereco_Estado" class="form-control" id="txtEstado" placeholder="UF" />
+                </div>
+                <div class="col-md-2">
+                    <label for="Nascimento">Nascimento</label>
+                    <input asp-for="Nascimento" class="form-control" id="txtNascimento" />
+                </div>
+
+
+            </div>
+
+            <br/>
+            <div class="row g-3">
+                <div class="col-md-1">
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </div>
+                <div class="col-md-1">
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-success">Voltar</a>
+                </div>
+            </div>    
+
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="card-text">
+            <h5 class="text-primary">Informe os dados corretamente</h5>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#txtCPF').mask('000.000.000-00', { placeholder: "___.___.___-__" });
+        //  $('#idCNPJ').mask('00.000.000/0000-00', { placeholder: "__.___.___/____-__" });
+        $('#idCelular').mask('(99) 99999-9999', { placeholder: "(99) 99999-9999" });
+        $('#txtCEP').mask('99999-999');
+    });
+</script>

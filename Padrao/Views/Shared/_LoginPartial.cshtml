@@ -9,10 +9,10 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-warning bg-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="glyphicon glyphicon-user"></span>
-                    @Publica.Login_Usuario
+                    @Publica.Login_NomeCompleto
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#"> <span class="glyphicon glyphicon-user"></span> | Meus Dados</a></li>
+                    <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@Publica.Login_Usuario_Id" asp-controller="Usuario"> <span class="glyphicon glyphicon-user"></span> | Meus Dados</a></li>
                     <li><a class="dropdown-item" href="#"> <span class="glyphicon glyphicon-cog"></span> | Configurações</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#"> <span class="glyphicon glyphicon-info-sign"></span> | Sobre</a></li>
@@ -30,13 +30,13 @@
         {
 
             <li class="nav-item">
-                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="" asp-action="">
+                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="home" asp-action="_Registrar">
                     <span class="glyphicon glyphicon-plus"></span>
                     Registrar
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="home" asp-action="_Login">
+                <a class="nav-link text-warning bg-black" asp-area="" asp-controller="home" asp-action="Index">
                     <span class="glyphicon glyphicon-user"></span>
                     Logar
                 </a>

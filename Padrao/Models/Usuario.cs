@@ -25,7 +25,7 @@ namespace Padrao.Models
         public string? Email { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatório")]
-		[StringLength(14)]
+		[StringLength(20,ErrorMessage = "Máximo de 20 caracteres")]
         public string? Celular { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatório")]
@@ -47,6 +47,18 @@ namespace Padrao.Models
 
         public int Autenticacao { get; set; } // codigo a ser enviado no email e validado
         public bool EmailValidado { get; set; } // se sim o login pode ser feito, senão solicite o código enviado no email ou reenviar.
+        public string? Endereco_Cep { get; set; }
+        public string? Endereco_Rua { get; set; }
+        public string? Endereco_Numero { get; set; }
+        public string? Endereco_Bairro { get; set; }
+        public string? Endereco_Cidade { get; set; }
+        public string? Endereco_Estado { get; set; }
+        public string? CPF { get; set; }
+        public string? RG { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime Nascimento { get; set; }
 
     }
 }

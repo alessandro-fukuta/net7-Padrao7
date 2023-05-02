@@ -34,23 +34,45 @@ namespace Padrao.Controllers
                 Mensagem = "Olá, " + cookie;
                 Publica.Logado = true;
                 Publica.Login_Usuario = cookie;
+
                 //Response.Redirect("Index");
             }
             else
             {
+                // cookie de ultimo login
+                var cookielogin = Request.Cookies["ultimologin"];
+                if(cookielogin != null)
+                {
+                    Publica.Login_Usuario = cookielogin;
+                } else
+                {
+                    Publica.Login_Usuario = "";
+                }
                 Publica.Logado = false;
-                Publica.Login_Usuario = "";
-                Mensagem = "Fazer Login";
+                Mensagem = "Login";
             }
 
             ViewBag.Mensagem = Mensagem;
+
+            if (!string.IsNullOrEmpty(Publica.Login_Usuario))
+            {
+                var u = _context.Usuarios.FirstOrDefault(m => m.NomeUsuario == Publica.Login_Usuario);
+                if (u == null)
+                {
+                    return View();
+                }
+                Publica.Login_NomeCompleto = u.NomeCompleto;
+                Publica.Login_Usuario_Id = u.Id;
+                
+                return View(u);
+            } 
 
             return View();
         }
 
         public IActionResult _Login()
         {
-            ViewBag.Mensagem = "Fazer Login";
+            ViewBag.Mensagem = "Login";
             return View();
         }
 
@@ -82,7 +104,12 @@ namespace Padrao.Controllers
             Publica.Mensagem1 = "";
             // salvar cookie de login se deu certo
             string? x = us.NomeUsuario;
+
+            Publica.Login_NomeCompleto = us.NomeCompleto;
+            Publica.Login_Usuario_Id = us.Id;
+
             SalvarCookie("asplogin", x);
+            SalvarCookie("ultimologin", us.NomeUsuario);
 
             return Redirect("index");
         }

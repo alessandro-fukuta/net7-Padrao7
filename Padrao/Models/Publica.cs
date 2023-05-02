@@ -9,6 +9,7 @@
 		// dados para enviar email ao usuario
 		public static string? Login_NomeCompleto { get; set; } // nome completo
 		public static string? Login_Email { get; set; }
+		public static int Login_Usuario_Id { get; set; }
 		// sobre o sistema
 		public static string? Sistema_Nome { get; set; }
 		public static string? Sistema_Versao { get; set; }

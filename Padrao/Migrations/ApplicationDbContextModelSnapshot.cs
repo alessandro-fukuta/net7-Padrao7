@@ -31,13 +31,16 @@ namespace Padrao.Migrations
                     b.Property<int>("Autenticacao")
                         .HasColumnType("int");
 
+                    b.Property<string>("CPF")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("Cadastro")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Celular")
                         .IsRequired()
-                        .HasMaxLength(14)
-                        .HasColumnType("varchar(14)");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("Chave")
                         .HasColumnType("longtext");
@@ -50,6 +53,27 @@ namespace Padrao.Migrations
                     b.Property<bool>("EmailValidado")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("Endereco_Bairro")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Endereco_Cep")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Endereco_Cidade")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Endereco_Estado")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Endereco_Numero")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Endereco_Rua")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Nascimento")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("NomeCompleto")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -59,6 +83,9 @@ namespace Padrao.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
+
+                    b.Property<string>("RG")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Senha")
                         .IsRequired()
