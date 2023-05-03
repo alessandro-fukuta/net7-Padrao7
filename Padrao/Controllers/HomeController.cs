@@ -83,6 +83,12 @@ namespace Padrao.Controllers
 
         public IActionResult _Sair()
         {
+            Publica.Mensagem1 = "";
+            Publica.Login_NomeCompleto = "";
+            Publica.Login_Usuario_Id = 0;
+            Publica.Login_Usuario = "";
+            Publica.Login_Administrador = false;
+            Publica.Logado = false;
             Response.Cookies.Delete("asplogin");
             return Redirect("Index");
 
