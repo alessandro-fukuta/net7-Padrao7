@@ -17,6 +17,7 @@ namespace Padrao.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IEmailSender emailSender;
 
+        Administradores adms = new Administradores();
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IEmailSender emailSender)
         {
@@ -26,47 +27,51 @@ namespace Padrao.Controllers
         }
         public IActionResult Index()
         {
-            string? Mensagem = Publica.Mensagem1;
 
-            var cookie = Request.Cookies["asplogin"];
-            if (cookie != null)
+            if (!Publica.Login_Administrador)
             {
-                Mensagem = "Olá, " + cookie;
-                Publica.Logado = true;
-                Publica.Login_Usuario = cookie;
+                string? Mensagem = Publica.Mensagem1;
 
-                //Response.Redirect("Index");
-            }
-            else
-            {
-                // cookie de ultimo login
-                var cookielogin = Request.Cookies["ultimologin"];
-                if(cookielogin != null)
+                var cookie = Request.Cookies["asplogin"];
+                if (cookie != null)
                 {
-                    Publica.Login_Usuario = cookielogin;
-                } else
-                {
-                    Publica.Login_Usuario = "";
+                    Mensagem = "Olá, " + cookie;
+                    Publica.Logado = true;
+                    Publica.Login_Usuario = cookie;
+
+                    //Response.Redirect("Index");
                 }
-                Publica.Logado = false;
-                Mensagem = "Login";
-            }
-
-            ViewBag.Mensagem = Mensagem;
-
-            if (!string.IsNullOrEmpty(Publica.Login_Usuario))
-            {
-                var u = _context.Usuarios.FirstOrDefault(m => m.NomeUsuario == Publica.Login_Usuario);
-                if (u == null)
+                else
                 {
-                    return View();
+                    // cookie de ultimo login
+                    var cookielogin = Request.Cookies["ultimologin"];
+                    if (cookielogin != null)
+                    {
+                        Publica.Login_Usuario = cookielogin;
+                    }
+                    else
+                    {
+                        Publica.Login_Usuario = "";
+                    }
+                    Publica.Logado = false;
+                    Mensagem = "Login";
                 }
-                Publica.Login_NomeCompleto = u.NomeCompleto;
-                Publica.Login_Usuario_Id = u.Id;
-                
-                return View(u);
-            } 
 
+                ViewBag.Mensagem = Mensagem;
+
+                if (!string.IsNullOrEmpty(Publica.Login_Usuario))
+                {
+                    var u = _context.Usuarios.FirstOrDefault(m => m.NomeUsuario == Publica.Login_Usuario);
+                    if (u == null)
+                    {
+                        return View();
+                    }
+                    Publica.Login_NomeCompleto = u.NomeCompleto;
+                    Publica.Login_Usuario_Id = u.Id;
+
+                    return View(u);
+                }
+            }
             return View();
         }
 
@@ -92,6 +97,22 @@ namespace Padrao.Controllers
         [HttpPost]
         public async Task<IActionResult> Logar([Bind("NomeUsuario")] Usuario users, string pUsuario, string pSenha)
         {
+            adms.AdministradoresCadastrados();
+
+            if (adms.VerificaSeAdministrador(pUsuario, pSenha))
+            {
+                // entao é administrador usuario e senha confirmada
+                Publica.Mensagem1 = "Administrador";
+                Publica.Login_NomeCompleto = "Usuário Administrador";
+                Publica.Login_Usuario_Id = 9999;
+                Publica.Login_Usuario = "Administrador";
+                Publica.Login_Administrador = true;
+                Publica.Logado = true;
+                return Redirect("Index");
+            }
+
+            Publica.Login_Administrador = false;
+
             var us = await _context.Usuarios
                   .FirstOrDefaultAsync(m => m.NomeUsuario == pUsuario && m.Senha == pSenha);
 
@@ -299,7 +320,7 @@ namespace Padrao.Controllers
                 "</head>" +
                 "<body>" +
 
-                      "<h3>Olá, " + users.NomeCompleto + "</h3>"+
+                      "<h3>Olá, " + users.NomeCompleto + "</h3>" +
                        "<br/>" +
                        "<br/>" +
                        "<h3>ALERTA DE ALTERAÇÃO DE SENHA.</h3>" +
@@ -311,7 +332,7 @@ namespace Padrao.Controllers
                        "<hr/>" +
                     "</body>" +
                     "</html>";
-                await emailSender.SendEmailAsync(users.Email, "ALTERAÇÃO DE SENHA", Mensagem);
+            await emailSender.SendEmailAsync(users.Email, "ALTERAÇÃO DE SENHA", Mensagem);
 
             Publica.Mensagem1 = "Senha ALTERADA com Sucesso";
             return Redirect("MensagemPublica");

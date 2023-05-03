@@ -7,36 +7,36 @@ namespace Padrao.Models
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required(ErrorMessage = "Campo obrigatório")]
-        [StringLength(50,ErrorMessage = "Máx de 50 caracteres")]
+        [StringLength(50, ErrorMessage = "Máx de 50 caracteres")]
         [Display(Name = "Nome Completo")]
         public string? NomeCompleto { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatório")]
-		[StringLength(20)]
-		[Display(Name = "Usuario")]
-		public string? NomeUsuario { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(20)]
+        [Display(Name = "Usuario")]
+        public string? NomeUsuario { get; set; }
 
 
-		[Required(ErrorMessage = "Campo obrigatório")]
-		[StringLength(100)]
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(100)]
         [Display(Name = "E-Mail")]
         public string? Email { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatório")]
-		[StringLength(20,ErrorMessage = "Máximo de 20 caracteres")]
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(20, ErrorMessage = "Máximo de 20 caracteres")]
         public string? Celular { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatório")]
-		[StringLength(18, MinimumLength = 8, ErrorMessage = "Mínimo de 8 Caracteres")]
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(18, MinimumLength = 8, ErrorMessage = "Mínimo de 8 Caracteres")]
         public string? Senha { get; set; }
 
-		[NotMapped] // Does not effect with your database
-		[Compare(nameof(Senha), ErrorMessage = "Senhas não conferem.")]
-		public string? ConfirmeSenha { get; set; }
+        [NotMapped] // Does not effect with your database
+        [Compare(nameof(Senha), ErrorMessage = "Senhas não conferem.")]
+        public string? ConfirmeSenha { get; set; }
 
-		[Display(Name = "Data Cadastro")]
+        [Display(Name = "Data Cadastro")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
@@ -61,4 +61,39 @@ namespace Padrao.Models
         public DateTime Nascimento { get; set; }
 
     }
+    public class Administradores
+    {
+        public string? UsuarioAdministrador { get; set; }
+        public string? SenhaAdministrador { get; set; }
+
+        public List<Administradores> ListaAdministadores = new List<Administradores>();
+        public Administradores()
+        {
+            
+        }
+
+        public void AdministradoresCadastrados()
+        {
+            ListaAdministadores.Clear();
+
+            ListaAdministadores.Add(new Administradores { UsuarioAdministrador = "AMANHECEU NO VALE", SenhaAdministrador = "RAINHA RAINHA" });
+            ListaAdministadores.Add(new Administradores { UsuarioAdministrador = "alessandro.fukuta", SenhaAdministrador = "Master#" });
+        }
+
+        public bool VerificaSeAdministrador(string pAdministrador, string pSenha)
+        {
+            bool Ret = false;
+
+            var retorno = ListaAdministadores.Find(t => t.UsuarioAdministrador == pAdministrador && t.SenhaAdministrador == pSenha);
+
+            if (retorno != null)
+            {
+                Ret = true;
+            }
+
+            return Ret;
+        }
+
+    }
+
 }
