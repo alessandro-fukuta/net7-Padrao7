@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Padrao.Data;
-using Padrao.Models;
+using Oficina7.Data;
+using Oficina7.Models;
 
-namespace Padrao.Controllers
+namespace Oficina7.Controllers
 {
     public class UsuarioController : Controller
     {

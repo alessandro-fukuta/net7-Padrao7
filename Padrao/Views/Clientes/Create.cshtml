@@ -1,0 +1,105 @@
+﻿@model Oficina7.Models.Cliente
+<link href="~/css/crud.css" rel="stylesheet" type="text/css" />
+@{
+    ViewData["Title"] = "Create";
+}
+<p></p>
+<h5>Cadastro de Clientes</h5>
+<hr />
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="nome" class="control-label"></label>
+            <input asp-for="nome" class="form-control" placeholder="Nome completo" />
+            <span asp-validation-for="nome" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Endereco" class="control-label"></label>
+            <input asp-for="Endereco" class="form-control" />
+            <span asp-validation-for="Endereco" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="bairro" class="control-label"></label>
+            <input asp-for="bairro" class="form-control" />
+            <span asp-validation-for="bairro" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="cidade" class="control-label"></label>
+            <input asp-for="cidade" class="form-control" />
+            <span asp-validation-for="cidade" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="estado" class="control-label"></label>
+            <input asp-for="estado" class="form-control" />
+            <span asp-validation-for="estado" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="cep" class="control-label"></label>
+            <input asp-for="cep" class="form-control" />
+            <span asp-validation-for="cep" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="telefone" class="control-label"></label>
+            <input asp-for="telefone" id="txtTelefone" class="form-control" />
+            <span asp-validation-for="telefone" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="celular" class="control-label"></label>
+            <input asp-for="celular" id="txtCelular" class="form-control" />
+            <span asp-validation-for="celular" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="email" class="control-label"></label>
+            <input asp-for="email" class="form-control" />
+            <span asp-validation-for="email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="cpf" class="control-label"></label>
+            <input id="txtCPF" onkeypress="mascaraMutuario(this,cpfCnpj)" onblur="clearTimeout()" asp-for="cpf" class="form-control" />
+            <span asp-validation-for="cpf" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="rg" class="control-label"></label>
+            <input asp-for="rg" class="form-control" />
+            <span asp-validation-for="rg" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="nascimento" class="control-label"></label>
+            <input id="txtNascimento" asp-for="nascimento" class="form-control" />
+            <span asp-validation-for="nascimento" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-md-2">
+            <input type="submit" value="Salvar Dados" class="btn btn-primary" />
+        </div>
+        <div class="col-md-2">
+            <a asp-action="Index" class="btn btn-outline-success">Voltar a Lista</a>
+        </div>
+
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $('#txtCelular').mask('(99) 99999-9999', { placeholder: "(99) 99999-9999" });
+        $('#txtTelefone').mask('(99) 9999-9999', { placeholder: "(99) 99999-9999" });
+    });
+</script>

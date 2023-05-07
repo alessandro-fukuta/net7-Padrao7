@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Padrao.Models
+namespace Oficina7.Models
 {
     public class Usuario
     {

@@ -1,4 +1,4 @@
-﻿namespace Padrao.Models
+﻿namespace Oficina7.Models
 {
     public class Registro
     {

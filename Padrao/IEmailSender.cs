@@ -1,4 +1,4 @@
-﻿namespace Padrao
+﻿namespace Oficina7
 {
     public interface IEmailSender
     {

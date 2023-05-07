@@ -1,4 +1,4 @@
-﻿namespace Padrao.Functions
+﻿namespace Oficina7.Functions
 {
     public class Funcoes
     {

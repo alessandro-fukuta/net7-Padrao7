@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Padrao.Models;
+using Oficina7.Models;
 
-namespace Padrao.Data
+namespace Oficina7.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -12,6 +12,8 @@ namespace Padrao.Data
         // propriedades definindo as tabelas de dados
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Usuario_Dado> Usuario_Dados { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+
 
     }
 }

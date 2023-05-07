@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Padrao.Data;
-using Padrao.Models;
+using Oficina7.Data;
+using Oficina7.Models;
 using RestSharp;
-using Padrao.Functions;
+using Oficina7.Functions;
 using System.Diagnostics;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
-namespace Padrao.Controllers
+namespace Oficina7.Controllers
 {
     public class HomeController : Controller
     {

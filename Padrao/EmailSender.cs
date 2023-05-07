@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Mail;
 
-namespace Padrao
+namespace Oficina7
 {
     public class EmailSender : IEmailSender
     {

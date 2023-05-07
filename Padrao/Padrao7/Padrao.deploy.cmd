@@ -37,7 +37,7 @@ goto :usage
 
 set RootPath=%~dp0
 if /I "%_DeploySetParametersFile%" == "" (
-set _DeploySetParametersFile=%RootPath%Padrao.SetParameters.xml
+set _DeploySetParametersFile=%RootPath%Oficina7.SetParameters.xml
 )
 
 @rem ------------------------------------------
@@ -159,8 +159,8 @@ set _MsDeployAdditionalFlags=%_MsDeployAdditionalFlags% -appHostConfigDir:%IISEx
 @rem ---------------------------------------------------------------------------------
 @rem check the existence of the package file
 @rem ---------------------------------------------------------------------------------
-if not exist "%RootPath%Padrao.zip" (
-echo "%RootPath%Padrao.zip" does not exist. 
+if not exist "%RootPath%Oficina7.zip" (
+echo "%RootPath%Oficina7.zip" does not exist. 
 echo This batch file relies on this deploy source file^(s^) in the same folder.
 goto :usage
 )
@@ -176,9 +176,9 @@ call :CheckParameterFile
 echo. Start executing msdeploy.exe
 echo -------------------------------------------------------
 if  not exist "%_DeploySetParametersFile%" (
-set _MSDeployCommandline="%MSDeployPath%msdeploy.exe" -source:package='%RootPath%Padrao.zip' -dest:%_Destination% -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension
+set _MSDeployCommandline="%MSDeployPath%msdeploy.exe" -source:package='%RootPath%Oficina7.zip' -dest:%_Destination% -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension
 ) else (
-set _MSDeployCommandline="%MSDeployPath%msdeploy.exe" -source:package='%RootPath%Padrao.zip' -dest:%_Destination% -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParamFile:"%_DeploySetParametersFile%"
+set _MSDeployCommandline="%MSDeployPath%msdeploy.exe" -source:package='%RootPath%Oficina7.zip' -dest:%_Destination% -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParamFile:"%_DeploySetParametersFile%"
 )
 
 if "%_HaveArgMSDeployAdditonalFlags%" == "" (
@@ -282,7 +282,7 @@ goto :eof
 @rem ---------------------------------------------------------------------------------
 :usage
 echo =========================================================
-if not exist "%RootPath%Padrao.deploy-readme.txt" (
+if not exist "%RootPath%Oficina7.deploy-readme.txt" (
 echo Usage:%~nx0 [/T^|/Y] [/M:ComputerName] [/U:userName] [/P:password] [/G:tempAgent] [additional msdeploy flags ...]
 echo Required flags:
 echo /T  Calls msdeploy.exe with the "-whatif" flag, which simulates deployment. 
@@ -310,7 +310,7 @@ echo "%_DeploySetParametersFile%"
 echo.
 echo For more information about this batch file, visit https://go.microsoft.com/fwlink/?LinkID=183544 
 ) else (
-start notepad "%RootPath%Padrao.deploy-readme.txt"
+start notepad "%RootPath%Oficina7.deploy-readme.txt"
 )
 echo =========================================================
 goto :eof
